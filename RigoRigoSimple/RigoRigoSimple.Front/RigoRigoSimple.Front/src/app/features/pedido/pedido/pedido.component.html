@@ -1,0 +1,91 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Productos disponibles</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <table mat-table [dataSource]="productos" class="mat-elevation-z8">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Producto </th>
+          <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let producto"> {{producto.precio | currency}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let producto">
+            <button mat-raised-button color="primary" (click)="agregarAlCarrito(producto)">
+              Agregar al carrito
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsProductos"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsProductos;"></tr>
+      </table>
+    </mat-card-content>
+</mat-card>
+  
+  
+<mat-card *ngIf="carrito.length > 0">
+    <mat-card-header>
+      <mat-card-title>Carrito de compras</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <table mat-table [dataSource]="carrito" class="mat-elevation-z8">
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Producto </th>
+          <td mat-cell *matCellDef="let item"> {{item.nombre}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let item"> {{item.cantidad}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="subtotal">
+          <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+          <td mat-cell *matCellDef="let item"> {{item.subtotal | currency}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsCarrito"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsCarrito;"></tr>
+      </table>
+      <div class="total">
+        <p><strong>Total: </strong> {{total | currency}}</p>
+      </div>
+    </mat-card-content>
+</mat-card>
+  
+  
+  
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Detalles de la orden</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <!-- Formulario para ingresar cédula y dirección -->
+      <form (ngSubmit)="guardarOrden()" class="formulario">
+        <mat-form-field appearance="fill" class="campo-formulario">
+          <mat-label>Cédula</mat-label>
+          <input matInput [(ngModel)]="cedula" name="cedula" placeholder="Ingrese su cédula" required />
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="campo-formulario">
+          <mat-label>Dirección</mat-label>
+          <input matInput [(ngModel)]="direccion" name="direccion" placeholder="Ingrese su dirección" required />
+        </mat-form-field>
+  
+        <div class="boton-guardar">
+          <button mat-raised-button color="accent" type="submit">Guardar Pedido</button>
+        </div>
+      </form>
+    </mat-card-content>
+</mat-card>
+  

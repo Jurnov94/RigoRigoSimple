@@ -1,0 +1,16 @@
+.titulo-card {
+    text-align: center;
+    background-color: #f1f1f1; /* Fondo gris suave */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+  }
+  
+  .titulo-centrado {
+    font-size: 2.5rem; /* Tamanho grande para el título */
+    color: #2a9d8f; /* Color atractivo, puedes elegir otro */
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif; /* Usando fuente moderna */
+    text-transform: uppercase; /* Poner el título en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+  }
